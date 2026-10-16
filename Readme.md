@@ -58,15 +58,15 @@ ollama --version
 
 ```bash
 git clone https://github.com/YOUR_USERNAME/listing-writer.git
-cd listing-writer
+cd _hacktoberfest_week2_challenge
 ```
 
 ### 3. Create a virtual environment
 
 **Windows (PowerShell):**
 ```powershell
-python -m venv .myvenv
-.\.myvenv\Scripts\Activate.ps1
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
 ```
 
 If PowerShell blocks the activation script, run this once:
@@ -76,7 +76,7 @@ Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
 
 **macOS / Linux:**
 ```bash
-python3 -m venv .myvenv
+python3 -m venv .venv
 source .myvenv/bin/activate
 ```
 
