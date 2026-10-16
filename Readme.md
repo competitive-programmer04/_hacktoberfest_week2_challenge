@@ -187,16 +187,16 @@ On CPU, generation takes 30–120 seconds. The status box shows `⏳ Reading the
 ## Troubleshooting
 
 **"Ollama is not running"**
-Start the Ollama background service (Windows/macOS: open the Ollama app; Linux: `sudo systemctl start ollama`), then reload the page.
+ -> Start the Ollama background service (Windows/macOS: open the Ollama app; Linux: `sudo systemctl start ollama`), then reload the page.
 
 **Model download is slow**
-The `gemma3:4b` model is ~3.3 GB. It's a one-time download. After that, everything runs offline.
+ -> The `gemma3:4b` model is ~3.3 GB. It's a one-time download. After that, everything runs offline.
 
 **Generation is very slow**
-You're likely on CPU inference. Check with `ollama ps` in a terminal — it shows whether the model is running on CPU or GPU. CPU is fine; a GPU just speeds it up.
+ -> You're likely on CPU inference. Check with `ollama ps` in a terminal — it shows whether the model is running on CPU or GPU. CPU is fine; a GPU just speeds it up.
 
 **"Read aloud" plays no sound**
-Some browsers block speech synthesis inside sandboxed iframes. Try Chrome or Edge. Firefox sometimes requires an extra permission.
+ -> Some browsers block speech synthesis inside sandboxed iframes. Try Chrome or Edge. Firefox sometimes requires an extra permission.
 
 ---
 
