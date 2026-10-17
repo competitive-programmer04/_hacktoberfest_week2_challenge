@@ -43,11 +43,11 @@ def pull_model_with_progress_bar(model: str = MODEL_NAME) -> bool:
             completed = chunk.get("completed", 0)
             total = chunk.get("total", 0)
 
-            if total:
-                pct = int(completed / total * 100)
-                progress_bar.progress(min(pct, 100))
+            if completed is not None and total is not None and total > 0:
+                pct = min(max(completed/total, 0.0),1.0)
+                progress_bar.progress(int(pct*100))
                 status_text.info(
-                    f"Downloading **{model}** — {pct}% "
+                    f"Downloading **{model}** — {int(pct*100)}% "
                     f"({completed // (1024 * 1024)} MB / {total // (1024 * 1024)} MB)"
                 )
             elif status and status != last_status:
@@ -61,4 +61,5 @@ def pull_model_with_progress_bar(model: str = MODEL_NAME) -> bool:
         progress_bar.empty()
         status_text.empty()
         st.error(f"Failed to download the model: {e}")
+        print(f"{e}")
         return False

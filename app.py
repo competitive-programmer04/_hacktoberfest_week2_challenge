@@ -159,26 +159,38 @@ if not st.session_state.startup_done:
     st.markdown(
         f'<div class="status-box status-warn">'
         f'⚠️ <b>{MODEL_NAME}</b> is not installed yet. '
-        f'It is a one-time download (~3.3 GB) and everything runs offline afterwards.'
+        f'It is a one-time download (~2.5 GB) and everything runs offline afterwards.'
         f'</div>',
         unsafe_allow_html=True,
     )
 
+    # Create a single placeholder for the skip message
+    skip_msg_placeholder = st.empty()
+
     col1, col2 = st.columns([2, 1])
+    
     with col1:
         if st.button("⬇️ Download model now", type="primary"):
+            # Force the skip message to disappear immediately
+            skip_msg_placeholder.empty()
+            st.session_state.show_skip = False
+            
             if pull_model_with_progress_bar(MODEL_NAME):
                 st.session_state.startup_done = True
                 st.rerun()
+                
     with col2:
         if st.button("Skip for now"):
-            st.info(
-                "You can install the model later by running "
-                f"`ollama pull {MODEL_NAME}` in a terminal."
-            )
+            st.session_state.show_skip = True
+
+    # Only render the skip message if the flag is True
+    if st.session_state.get("show_skip", False):
+        skip_msg_placeholder.info(
+            "You can install the model later by running "
+            f"`ollama pull {MODEL_NAME}` in a terminal."
+        )
 
     st.stop()
-
 
 # ---------------------------------------------------------------------------
 # Main app
