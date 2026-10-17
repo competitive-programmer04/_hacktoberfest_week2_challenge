@@ -159,7 +159,7 @@ if not st.session_state.startup_done:
     st.markdown(
         f'<div class="status-box status-warn">'
         f'⚠️ <b>{MODEL_NAME}</b> is not installed yet. '
-        f'It is a one-time download (~2.5 GB) and everything runs offline afterwards.'
+        f'It is a one-time download (~3.3 GB) and everything runs offline afterwards.'
         f'</div>',
         unsafe_allow_html=True,
     )
